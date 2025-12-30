@@ -16,13 +16,7 @@ import com.mcafee.orbit.Credentials.CredentialStore
 
 @Field stashNumber = 0
 @Field stashList = []
-// @Field buildInfo = Artifactory.newBuildInfo()
-
-// Add constructor to accept script context
-orbitbuild(script) {
-    this.steps = script
-    this.buildInfo = script.Artifactory.newBuildInfo()  // ✅ Initialize here with script context
-}
+@Field buildInfo = Artifactory.newBuildInfo()
 
 /**
  * Check out a GIT repository to the workspace.

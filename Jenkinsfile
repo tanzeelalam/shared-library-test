@@ -1,8 +1,9 @@
 @Library("tanzeel-shared-library") _
-buildProfile = new org.mcafee.orbitbuild()
+
+def buildProfile = new org.mcafee.orbitbuild()  // ✅ Add 'def' and pass 'this'
+
 pipeline {
     agent any
-
     stages {
         stage('Hello') {
             steps {

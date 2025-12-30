@@ -6,6 +6,7 @@ pipeline {
         stage('Test') {
             steps {
                 echo 'Testing shared library'
+                helloWorld()
             }
         }
     }

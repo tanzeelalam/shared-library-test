@@ -1,6 +1,5 @@
 @Library("tanzeel-shared-library") _
 
-#!Groovy
 /* groovylint-disable CompileStatic, DuplicateNumberLiteral, DuplicateStringLiteral, ElseBlockBraces, IfStatementBraces, LineLength, UnnecessaryGString */
 /** Refactored: Amit Prajapati */
 /* *************************************************************************************************

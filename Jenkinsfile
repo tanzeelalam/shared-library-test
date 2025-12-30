@@ -96,6 +96,3 @@ env.DEBUGLEVEL = '4'
     }
 }*/
 
-     buildProfile.addGIT([
-            project             : "tanzeelalam/shared-library-test"      
-        ])

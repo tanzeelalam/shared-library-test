@@ -6,7 +6,7 @@ pipeline {
         stage('Test') {
             steps {
                 echo 'Tanzeel Alam testing shared library'
-                helloWorld()
+                //helloWorld()
             }
         }
     }

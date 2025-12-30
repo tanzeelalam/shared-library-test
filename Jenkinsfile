@@ -1,4 +1,5 @@
 @Library("tanzeel-shared-library") _
+buildProfile = new org.mcafee.orbitbuild()
 pipeline {
     agent any
 

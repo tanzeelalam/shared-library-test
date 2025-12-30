@@ -1,0 +1,35 @@
+apply plugin:EnterpriseRepositoryPlugin
+
+class EnterpriseRepositoryPlugin implements Plugin<Gradle> {
+
+    private static String ENTERPRISE_REPOSITORY_URL =  "ArtifactoryURL"
+
+    void apply(Gradle gradle) {
+        // ONLY USE ENTERPRISE REPO FOR DEPENDENCIES
+        gradle.allprojects{ project ->
+            project.repositories {
+
+                // Remove all repositories not pointing to the enterprise repository url.
+                // If the repository is MavenArtifactRepository or if the url is ENTERPRISE_REPOSITORY_URL,
+                // then its fine otherwise it will delete the repository and then add the enterprise repository to download it from artifactory.
+                all { ArtifactRepository repo ->
+                    if (!(repo instanceof MavenArtifactRepository) ||
+                            repo.url.toString() != ENTERPRISE_REPOSITORY_URL) {
+                        project.logger.lifecycle "Repository ${repo.url} removed. Only $ENTERPRISE_REPOSITORY_URL is allowed"
+                        remove repo
+                    }
+                }
+
+                // add the enterprise repository
+                maven {
+                    name "STANDARD_ENTERPRISE_REPO"
+                    url ENTERPRISE_REPOSITORY_URL
+                    credentials {
+                        username = "${art_dep_username}"
+                        password = "${art_dep_password}"
+                    }
+                }
+            }
+        }
+    }
+}

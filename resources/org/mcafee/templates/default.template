@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+<HEAD>
+    <STYLE type="text/css">
+        table {
+        border-collapse: collapse;
+        border-spacing: 0;
+        }
+        td {
+        font-family: Arial, sans-serif;
+        font-size: 14px;
+        padding: 10px 5px;
+        border-style: solid;
+        border-width: 1px;
+        overflow: hidden;
+        word-break: normal;
+        vertical-align: top;
+        }
+
+    </STYLE>
+</HEAD>
+<BODY>
+<p><b>%STATUS%</b> - Job: %JOBNAME% [%BUILDNUMBER%]:</p>
+<table>
+    <tr>
+        <td id='name'>
+            <h5>Job Name</h5>
+        </td>
+        <td>
+            %JOBNAME%
+        </td>
+    </tr>
+    <tr>
+        <td>
+            <h5>Build Number</h5>
+        </td>
+        <td>
+            %BUILDNUMBER%
+        </td>
+    </tr>
+    <tr>
+        <td>
+            <h5>Version</h5>
+        </td>
+        <td>
+            %VERSION%
+        </td>
+    </tr>
+    <tr>
+        <td>
+            <h5>Branch</h5>
+        </td>
+        <td>
+            %CURRENTBRANCH%
+        </td>
+    </tr>
+    <tr>
+        <td>
+            <h5>URLs</h5>
+        </td>
+        <td>
+            Build: %BUILDURL%
+            <br> </br>
+            Radar: %RADARURL%
+        </td>
+    </tr>
+</table>
+</BODY>
+</html>

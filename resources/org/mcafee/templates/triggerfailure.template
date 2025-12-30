@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html lang="en">
+<HEAD>
+</HEAD>
+<BODY>
+<p>
+<pre>
+Failed to trigger remote job from %BUILDURL% <br/>
+<b>Product name:</b> %PRODUCT% <br/>
+<b>Component name:</b> %COMPONENT% <br/>
+<b>Job name:</b> %JOB% <br/>
+<b>Branch: </b> %BRANCH% <br/>
+<b>Number of parameters:</b> %PARAMETERS% <br/>
+<b>Error message:</b> %ERROR%
+</pre>
+</BODY>
+</html>

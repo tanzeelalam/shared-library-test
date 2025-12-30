@@ -1,4 +1,4 @@
-@Library("tanzeel-shared-library") _
+//@Library("tanzeel-shared-library") _
 
 pipeline {
     agent any

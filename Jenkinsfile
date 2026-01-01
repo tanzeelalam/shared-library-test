@@ -84,5 +84,5 @@ else if (params.BUILD_TO_PACKAGE) {
 }
 env.DEBUGLEVEL = '4'
 
-buildnode("windows") {
+buildnode(label:"windows") {
 }

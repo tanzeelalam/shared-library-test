@@ -95,10 +95,9 @@ env.DEBUGLEVEL = '4'
         }
     }
 }*/
-     buildProfile.addGIT([
-            project             : "/trellix-skyhigh/mcp-win",
-            branch              : params.branchOverride,
-            server              : "ssh://git@github.trellix.com",
-	    instance            : "trellix",
-            target              : "/mcp-main"
-        ])
+
+buildnode(params.PROJECT_NODE_LABEL) {
+ buildProfile.addGIT([
+		project             : "tanzeelalam/shared-library-test"		
+	])
+}

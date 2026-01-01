@@ -84,6 +84,6 @@ else if (params.BUILD_TO_PACKAGE) {
 }
 env.DEBUGLEVEL = '4'
 echo message: params.PROJECT_NODE_LABEL
-node(params.PROJECT_NODE_LABEL) {
+buildnode(params.PROJECT_NODE_LABEL) {
 	echo message: params.PROJECT_NODE_LABEL
 }

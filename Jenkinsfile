@@ -20,7 +20,7 @@ properties(
         // Parameters block - Handles the user defined parameters in the Jenkins UI.
         parameters(
         [
-            string(defaultValue: "w2k16-latest", description: "Project Build Node Label", name: "PROJECT_NODE_LABEL"),
+            string(defaultValue: "windows", description: "Project Build Node Label", name: "PROJECT_NODE_LABEL"),
             choice(choices: ['4.9.4', '4.9.3','4.9.2','4.9.1','4.9.0','4.8.0'].join("\n"), description: 'Version ?', name: 'MCP_VERSION'),
             choice(choices: ['BuildAndPackage', 'Build', 'Package'].join("\n"), description: 'Job Type', name: "JOB_TYPE"),
             choice(choices: ['2019', '2022', '2010'].join("\n"), description: 'Visual Studio Version', name: "VISUAL_STUDIO_VERSION"),

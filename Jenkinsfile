@@ -86,7 +86,5 @@ env.DEBUGLEVEL = '4'
 echo message: params.PROJECT_NODE_LABEL
 node(params.PROJECT_NODE_LABEL) {
 	echo message: "SUCCESSFUL RUN !!!"
-	buildProfile.addGIT([
-            project             : "tanzeelalam/shared-library-test"
-        ])
+    return git.gitMain("tanzeelalam/shared-library-test")
 }

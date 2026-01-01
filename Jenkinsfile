@@ -83,3 +83,6 @@ else if (params.BUILD_TO_PACKAGE) {
     error "[MCP-DEBUG] params.BUILD_TO_PACKAGE is ${params.BUILD_TO_PACKAGE}, But you selected job type = ${params.JOB_TYPE} Aborting the job."
 }
 env.DEBUGLEVEL = '4'
+
+buildnode(params.PROJECT_NODE_LABEL) {
+}

@@ -84,20 +84,71 @@ else if (params.BUILD_TO_PACKAGE) {
 }
 env.DEBUGLEVEL = '4'
 
-/*pipeline {
-    agent any
-    stages {
-        stage('Test') {
-            steps {
-                echo 'Tanzeel Alam testing shared library'
-                //helloWorld()
-            }
-        }
-    }
-}*/
-
 buildnode(params.PROJECT_NODE_LABEL) {
- buildProfile.addGIT([
-		project             : "tanzeelalam/shared-library-test"		
-	])
+    /**
+     * Set some enviornment variables
+    */
+    env.SWIDFILE                = env.WORKSPACE + "com.mcafee_apis.swidtag"
+    buildRoot                   = env.WORKSPACE
+    dependenciesRelativePath    = "/Dependencies"
+    dependenciesFullPath        = env.WORKSPACE + dependenciesRelativePath
+    mcpMainHomePath             = buildRoot + "/mcp-main"
+    onPremEPOHome               = mcpMainHomePath + "/OnPremextension"
+    mEpoHome                    = mcpMainHomePath + "/MVISIONePOextn"
+    cEpoHome                    = mcpMainHomePath + "/extension"
+    orbitBuildPullPath          = buildRoot + "/orbitBuildPullPath"
+    jobOutputPath               = buildRoot + "/jobOutput"
+
+
+    echo message: "MCP-DEBUG-ENV ORBIT_JOB_TYPE= ${env.ORBIT_JOB_TYPE} extensionOnly= ${extensionOnly} ORBIT_BUILD_NUMBER= ${env.ORBIT_BUILD_NUMBER} buildToPackage= ${env.buildToPackage}"
+    print params
+    print env
+
+    buildOnly                   = env.ORBIT_JOB_TYPE == "Build"
+    packageOnly                 = env.ORBIT_JOB_TYPE == "Package"
+    isBuildAndPackage           = env.ORBIT_JOB_TYPE == "BuildAndPackage"
+    extensionOnly               = env.ORBIT_JOB_TYPE == "Package" && params.extensionOnly
+
+    TOOLSDIR                    = "E:/Tools"
+    advancedInstallerPath       = "E:/tools/AdvanceInstaller/advinst_12_3_1/bin/x86/AdvancedInstaller.com"
+
+    List versionSplit           = env.BUILDVERSION.split('\\.')
+    majorVersion                = versionSplit[0]
+    minorVersion                = versionSplit[1]
+    patchVersion                = versionSplit[2]
+
+    env.ENS_SDK                 = dependenciesFullPath + '/BLFramework/sdk'
+    env.MA_SDK                  = dependenciesFullPath + '/MA'
+    env.McTray_SDK              = dependenciesFullPath + '/McTray/sdk'
+    env.SYSCORE_SDK              = dependenciesFullPath + '/SysCore/sdk'
+    env.DRA_SDK                 = dependenciesFullPath + '/DRA/sdk'
+    env.MCP_EXT_LIBS            = dependenciesFullPath +  "/mcp-ext/Out"
+
+    env.JAVA_HOME               = TOOLSDIR + "/jdk1.8.0_45-X64"
+    env.ANT_HOME                = TOOLSDIR + "/ANT_194"
+
+    versionInfoToken = [
+        "_V1_"          : majorVersion,
+        "_V2_"          : minorVersion,
+        "_V3_"          : patchVersion,
+        "_BUILDNUMBER_" : env.ORBIT_BUILD_NUMBER_ONLY
+    ]
+
+    /**
+     * Prebuild:
+     * - For packageing , pull from artifact
+     * - Add Dependencies
+     *
+     *
+    */
+    prebuild() {
+        echo message: "[MCP-DEBUG] Prebuild"
+        buildProfile.addGIT([
+            project             : "/trellix-skyhigh/mcp-win",
+            branch              : params.branchOverride,
+            server              : "ssh://git@github.trellix.com",
+	    instance            : "trellix",
+            target              : "/mcp-main"
+        ])
+	}
 }

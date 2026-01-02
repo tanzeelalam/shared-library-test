@@ -86,11 +86,14 @@ env.DEBUGLEVEL = '4'
 echo message: params.PROJECT_NODE_LABEL
 node(params.PROJECT_NODE_LABEL) {
 	echo message: "SUCCESSFUL RUN !!!"
-	        buildProfile.addGIT([
-            project             : "/trellix-skyhigh/mcp-win",
-            branch              : params.branchOverride,
-            server              : "ssh://git@github.trellix.com",
-	    instance            : "trellix",
-            target              : "/mcp-main"
-        ])
+	/*************EXPERIMENT***************/
+	                    visualstudio([
+                        version         : params.VISUAL_STUDIO_VERSION,
+                        solutionFile    : buildRoot  +  "/mcp-main/mcp-win.sln",
+                        targets         : "RELEASE|x64",
+                        logName         : "build64.txt",
+                        enableCoverity  : params.COVERITY_BUILD,
+                        enableBullseye  : params.BULLSEYE_BUILD
+                    ])	
+	/**************************************/
 }

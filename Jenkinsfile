@@ -89,7 +89,7 @@ node(params.PROJECT_NODE_LABEL) {
 	/*************EXPERIMENT***************/
 	                    visualstudio([
                         version         : params.VISUAL_STUDIO_VERSION,
-                        solutionFile    : buildRoot  +  "/mcp-main/mcp-win.sln",
+                        solutionFile    : "/mcp-main/mcp-win.sln",
                         targets         : "RELEASE|x64",
                         logName         : "build64.txt",
                         enableCoverity  : params.COVERITY_BUILD,
